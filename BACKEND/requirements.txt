@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+langchain
+langchain-openai
+langchain-core
+playwright
+dateparser
+httpx
+
+# pip install langchain-openai

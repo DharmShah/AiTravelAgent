@@ -1,0 +1,362 @@
+:root {
+  font-family: "Source Sans 3", sans-serif;
+  color: #f8f5ef;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 191, 105, 0.25),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(79, 109, 122, 0.4),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #0b1d26 0%, #102f3d 48%, #16404d 100%);
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 1.05fr 1.2fr;
+  gap: 24px;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.hero-panel,
+.chat-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  background: rgba(6, 13, 17, 0.62);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.hero-panel {
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto -30px -40px auto;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 191, 105, 0.35) 0%,
+    transparent 68%
+  );
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffbf69;
+}
+
+.hero-panel h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.9rem, 7vw, 5.4rem);
+  line-height: 0.94;
+}
+
+.hero-copy {
+  max-width: 40rem;
+  margin: 20px 0 0;
+  font-size: 1.16rem;
+  line-height: 1.7;
+  color: rgba(248, 245, 239, 0.82);
+}
+
+.prompt-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.prompt-chip {
+  text-align: left;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.prompt-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 191, 105, 0.6);
+  background: rgba(255, 191, 105, 0.12);
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 18px;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.message-bubble {
+  max-width: 90%;
+  padding: 16px 18px;
+  border-radius: 22px;
+  animation: fade-up 260ms ease;
+}
+
+.message-bubble.user {
+  margin-left: auto;
+  background: linear-gradient(135deg, #ffbf69, #f77f00);
+  color: #1b1208;
+}
+
+.message-bubble.assistant {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.message-bubble.loading {
+  opacity: 0.8;
+}
+
+.message-meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.message-text {
+  margin-top: 8px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.comparison-card {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(7, 18, 24, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.comparison-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.comparison-header h3 {
+  margin: 4px 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.4rem;
+}
+
+.price-pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 191, 105, 0.15);
+  color: #ffcf93;
+  font-weight: 700;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.comparison-grid article {
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.comparison-grid span {
+  display: block;
+  font-size: 0.82rem;
+  opacity: 0.68;
+}
+
+.comparison-grid strong {
+  display: block;
+  margin-top: 6px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+th {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.assistant-note {
+  margin: 14px 0 0;
+  color: rgba(248, 245, 239, 0.74);
+  line-height: 1.6;
+}
+
+.composer {
+  padding: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.composer textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.composer-footer p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(248, 245, 239, 0.7);
+}
+
+.composer button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #ffbf69, #f77f00);
+  color: #1b1208;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.composer button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1080px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel h1 {
+    max-width: 100%;
+  }
+
+  .message-bubble {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    padding: 14px;
+  }
+
+  .hero-panel,
+  .chat-panel {
+    border-radius: 22px;
+  }
+
+  .hero-panel {
+    padding: 24px;
+  }
+
+  .comparison-grid,
+  .composer-footer {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .comparison-header {
+    flex-direction: column;
+  }
+}
