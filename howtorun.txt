@@ -1,0 +1,51 @@
+AITravelAgent - How to Run
+
+1) Backend (FastAPI)
+
+Open a terminal:
+cd BACKEND
+
+Create and activate virtual environment (recommended):
+python -m venv .venv
+.\.venv\Scripts\activate
+
+Install backend dependencies:
+pip install -r requirements.txt
+
+Run backend server:
+uvicorn main:app --reload
+
+Backend URL:
+http://127.0.0.1:8000
+
+
+2) Frontend (Vite + React)
+
+Open a second terminal:
+cd FRONTEND
+
+Install frontend dependencies:
+npm install
+
+Run frontend dev server:
+npm run dev
+
+Frontend URL (usually):
+http://localhost:5173
+(or the port shown in terminal, e.g. 5176)
+
+
+3) Full Run Flow
+
+- Keep backend terminal running.
+- Keep frontend terminal running.
+- Open the frontend URL in browser.
+
+
+4) If Port Is Already In Use
+
+Backend (different port):
+uvicorn main:app --reload --port 8001
+
+Frontend (Vite usually auto-selects next free port):
+npm run dev

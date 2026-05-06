@@ -1,9 +1,17 @@
+import asyncio
+
+import sys
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.schemas import TravelChatRequest, TravelChatResponse
 from app.services.travel_chat import travel_chat_service
+
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 
 app = FastAPI(title=settings.app_name, version=settings.app_version)
